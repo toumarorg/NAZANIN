@@ -1,0 +1,1942 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>شب‌هایی که فاصله، فاصله نبود</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500&display=swap');
+
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+    margin:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#020202;
+    color:#eee;
+    font-family:"Vazirmatn",sans-serif;
+}
+
+body{
+    user-select:none;
+}
+
+button{
+    font-family:inherit;
+}
+
+/* =========================
+   APP
+========================= */
+
+#app{
+    position:relative;
+    width:100%;
+    height:100dvh;
+    min-height:100vh;
+    overflow:hidden;
+    background:#020202;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.bg{
+    position:absolute;
+    inset:-15%;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(120,120,120,.12),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 15% 80%,
+            rgba(255,255,255,.035),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(255,255,255,.025),
+            transparent 30%
+        ),
+        #020202;
+
+    animation:bgMove 16s ease-in-out infinite alternate;
+}
+
+@keyframes bgMove{
+
+    from{
+        transform:scale(1);
+    }
+
+    to{
+        transform:scale(1.12);
+    }
+}
+
+/* =========================
+   NOISE
+========================= */
+
+.noise{
+    position:absolute;
+    inset:-50%;
+
+    opacity:.035;
+
+    pointer-events:none;
+
+    background-image:
+        repeating-radial-gradient(
+            circle,
+            #fff 0,
+            #fff 1px,
+            transparent 1px,
+            transparent 4px
+        );
+
+    animation:noise .25s steps(2) infinite;
+}
+
+@keyframes noise{
+
+    0%{
+        transform:translate(0,0);
+    }
+
+    25%{
+        transform:translate(2%,1%);
+    }
+
+    50%{
+        transform:translate(-1%,2%);
+    }
+
+    75%{
+        transform:translate(1%,-2%);
+    }
+
+    100%{
+        transform:translate(-2%,0);
+    }
+}
+
+/* =========================
+   PARTICLES
+========================= */
+
+.particles{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.particle{
+    position:absolute;
+
+    width:2px;
+    height:2px;
+
+    border-radius:50%;
+
+    background:#aaa;
+
+    opacity:0;
+
+    animation:floatUp 8s linear infinite;
+}
+
+@keyframes floatUp{
+
+    0%{
+        transform:
+            translateY(105vh)
+            translateX(0);
+
+        opacity:0;
+    }
+
+    15%{
+        opacity:.35;
+    }
+
+    80%{
+        opacity:.12;
+    }
+
+    100%{
+        transform:
+            translateY(-10vh)
+            translateX(70px);
+
+        opacity:0;
+    }
+}
+
+/* =========================
+   LIGHT
+========================= */
+
+.light{
+    position:absolute;
+
+    width:min(600px,90vw);
+    height:min(600px,90vw);
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    pointer-events:none;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.035),
+            transparent 65%
+        );
+}
+
+/* =========================
+   SCREENS
+========================= */
+
+.screen{
+    position:absolute;
+    inset:0;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:
+        max(25px, env(safe-area-inset-top))
+        max(22px, env(safe-area-inset-right))
+        max(55px, env(safe-area-inset-bottom))
+        max(22px, env(safe-area-inset-left));
+
+    text-align:center;
+
+    z-index:5;
+}
+
+.screen.active{
+    display:flex;
+}
+
+/* =========================
+   INTRO
+========================= */
+
+#intro{
+    flex-direction:column;
+
+    animation:fadeIn 2s ease;
+}
+
+.time{
+    font-size:clamp(55px,13vw,110px);
+
+    font-weight:200;
+
+    letter-spacing:clamp(6px,2vw,12px);
+
+    color:#ddd;
+
+    text-shadow:
+        0 0 30px rgba(255,255,255,.12),
+        0 0 90px rgba(255,255,255,.04);
+
+    animation:timeGlow 4s ease-in-out infinite;
+}
+
+@keyframes timeGlow{
+
+    50%{
+        text-shadow:
+            0 0 50px rgba(255,255,255,.2),
+            0 0 110px rgba(255,255,255,.08);
+    }
+}
+
+.introTitle{
+
+    margin-top:15px;
+
+    color:#777;
+
+    font-size:clamp(12px,3vw,15px);
+
+    line-height:2;
+}
+
+.enter{
+
+    margin-top:clamp(35px,7vh,55px);
+
+    min-width:150px;
+
+    padding:13px 35px;
+
+    border:1px solid #444;
+
+    border-radius:5px;
+
+    background:rgba(255,255,255,.015);
+
+    color:#999;
+
+    font-size:14px;
+
+    cursor:pointer;
+
+    transition:.4s;
+
+    box-shadow:
+        0 0 0 rgba(255,255,255,0);
+}
+
+.enter:hover,
+.enter:active{
+
+    color:#fff;
+
+    border-color:#888;
+
+    box-shadow:
+        0 0 30px rgba(255,255,255,.06);
+}
+
+/* =========================
+   STORY
+========================= */
+
+.story{
+    width:min(760px,100%);
+
+    animation:storyIn .9s ease;
+}
+
+@keyframes storyIn{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.chapter{
+
+    color:#555;
+
+    font-size:clamp(9px,2vw,11px);
+
+    letter-spacing:clamp(3px,1vw,5px);
+
+    margin-bottom:clamp(20px,5vh,35px);
+}
+
+.storyText{
+
+    min-height:clamp(300px,48vh,390px);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    color:#d8d8d8;
+
+    font-size:
+        clamp(
+            15px,
+            2.1vw,
+            21px
+        );
+
+    line-height:2.65;
+
+    font-weight:300;
+
+    text-shadow:
+        0 0 25px rgba(255,255,255,.025);
+
+    overflow-wrap:break-word;
+
+    transition:.6s;
+}
+
+.storyText b{
+
+    color:#fff;
+
+    font-weight:400;
+}
+
+/* =========================
+   CURSOR
+========================= */
+
+.cursor{
+
+    display:inline-block;
+
+    width:2px;
+
+    height:1.1em;
+
+    background:#aaa;
+
+    margin-right:5px;
+
+    vertical-align:middle;
+
+    animation:blink .8s infinite;
+}
+
+@keyframes blink{
+
+    50%{
+        opacity:0;
+    }
+}
+
+/* =========================
+   NEXT
+========================= */
+
+.next{
+
+    margin-top:10px;
+
+    border:0;
+
+    background:transparent;
+
+    color:#555;
+
+    font-size:13px;
+
+    padding:12px 25px;
+
+    opacity:0;
+
+    transform:translateY(10px);
+
+    pointer-events:none;
+
+    transition:
+        opacity .8s,
+        transform .8s,
+        color .3s;
+
+    cursor:pointer;
+}
+
+.next.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+    pointer-events:auto;
+}
+
+.next:hover,
+.next:active{
+
+    color:#fff;
+}
+
+/* =========================
+   SPECIAL WAIT
+========================= */
+
+.waitArea{
+
+    display:none;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:16px;
+
+    margin-top:15px;
+}
+
+.waitText{
+
+    color:#555;
+
+    font-size:13px;
+
+    opacity:0;
+
+    animation:waitAppear 1.5s forwards;
+}
+
+@keyframes waitAppear{
+
+    from{
+        opacity:0;
+        transform:translateY(8px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.secretButton{
+
+    display:none;
+
+    padding:12px 24px;
+
+    border:1px solid #444;
+
+    background:rgba(255,255,255,.01);
+
+    color:#aaa;
+
+    border-radius:4px;
+
+    font-family:inherit;
+
+    font-size:13px;
+
+    cursor:pointer;
+
+    animation:secretAppear 1.2s ease forwards;
+}
+
+@keyframes secretAppear{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(15px)
+            scale(.95);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+.secretButton:hover{
+
+    color:#fff;
+
+    border-color:#888;
+
+    box-shadow:
+        0 0 30px rgba(255,255,255,.05);
+}
+
+/* =========================
+   POPUP
+========================= */
+
+.popup{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%)
+        scale(.9);
+
+    width:min(450px,88vw);
+
+    max-height:80vh;
+
+    overflow:auto;
+
+    padding:30px;
+
+    background:
+        rgba(9,9,9,.98);
+
+    border:1px solid #333;
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.9);
+
+    z-index:100;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.4s;
+}
+
+.popup.show{
+
+    opacity:1;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+
+    pointer-events:auto;
+}
+
+.popupTitle{
+
+    color:#666;
+
+    font-size:11px;
+
+    margin-bottom:20px;
+}
+
+.popupText{
+
+    color:#ccc;
+
+    font-size:14px;
+
+    line-height:2.5;
+}
+
+.close{
+
+    margin-top:25px;
+
+    padding:10px 30px;
+
+    border:1px solid #444;
+
+    background:transparent;
+
+    color:#999;
+
+    border-radius:4px;
+
+    cursor:pointer;
+}
+
+/* =========================
+   FINAL
+========================= */
+
+#final{
+
+    overflow-y:auto;
+
+    align-items:flex-start;
+}
+
+.final{
+
+    width:min(720px,100%);
+
+    padding-top:
+        clamp(30px,8vh,90px);
+
+    padding-bottom:100px;
+}
+
+.final h1{
+
+    font-size:
+        clamp(
+            28px,
+            6vw,
+            48px
+        );
+
+    font-weight:300;
+
+    margin:0 0 40px;
+}
+
+.final p{
+
+    color:#aaa;
+
+    font-size:
+        clamp(
+            14px,
+            2vw,
+            18px
+        );
+
+    line-height:2.8;
+
+    margin:0;
+}
+
+.final strong{
+
+    color:#eee;
+
+    font-weight:400;
+}
+
+.heart{
+
+    margin-top:50px;
+
+    font-size:25px;
+
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+
+    50%{
+        transform:scale(1.2);
+        opacity:.5;
+    }
+}
+
+/* =========================
+   MUSIC
+========================= */
+
+.musicStatus{
+
+    position:absolute;
+
+    left:
+        max(15px,env(safe-area-inset-left));
+
+    bottom:
+        max(15px,env(safe-area-inset-bottom));
+
+    z-index:50;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:#444;
+
+    font-size:10px;
+}
+
+.musicDot{
+
+    width:6px;
+    height:6px;
+
+    border-radius:50%;
+
+    background:#666;
+
+    animation:musicPulse 1.5s infinite;
+}
+
+@keyframes musicPulse{
+
+    50%{
+        opacity:.2;
+        transform:scale(.7);
+    }
+}
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress{
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:
+        max(17px,env(safe-area-inset-bottom));
+
+    transform:translateX(-50%);
+
+    width:min(300px,55vw);
+
+    height:1px;
+
+    background:#181818;
+
+    z-index:40;
+}
+
+.bar{
+
+    width:0%;
+
+    height:100%;
+
+    background:#777;
+
+    transition:.7s;
+}
+
+
+/* =====================================================
+   PHONE
+===================================================== */
+
+@media (max-width:600px){
+
+    .storyText{
+
+        min-height:42vh;
+
+        font-size:15px;
+
+        line-height:2.45;
+
+    }
+
+    .chapter{
+
+        margin-bottom:20px;
+
+    }
+
+    .next{
+
+        font-size:14px;
+
+        padding:13px 28px;
+
+    }
+
+    .musicStatus{
+
+        font-size:9px;
+
+    }
+
+}
+
+
+/* =====================================================
+   SMALL PHONE
+===================================================== */
+
+@media (max-width:380px){
+
+    .storyText{
+
+        font-size:14px;
+
+        line-height:2.3;
+
+        min-height:44vh;
+
+    }
+
+    .chapter{
+
+        margin-bottom:15px;
+
+    }
+
+    .introTitle{
+
+        font-size:11px;
+
+    }
+
+}
+
+
+/* =====================================================
+   DESKTOP
+===================================================== */
+
+@media (min-width:800px){
+
+    .storyText{
+
+        font-size:20px;
+
+        line-height:2.7;
+
+        min-height:370px;
+
+    }
+
+    .enter{
+
+        padding:
+            14px 50px;
+
+    }
+
+}
+
+
+/* =====================================================
+   SHORT SCREEN
+===================================================== */
+
+@media (max-height:650px){
+
+    .storyText{
+
+        min-height:250px;
+
+        font-size:15px;
+
+        line-height:2.2;
+
+    }
+
+    .chapter{
+
+        margin-bottom:12px;
+
+    }
+
+}
+
+
+/* =====================================================
+   LANDSCAPE PHONE
+===================================================== */
+
+@media (
+    max-height:500px
+) and (
+    orientation:landscape
+){
+
+    .screen{
+
+        padding-top:15px;
+
+        padding-bottom:45px;
+
+    }
+
+    .storyText{
+
+        min-height:210px;
+
+        max-height:55vh;
+
+        overflow-y:auto;
+
+        font-size:14px;
+
+        line-height:2.1;
+
+    }
+
+    .chapter{
+
+        margin-bottom:8px;
+
+    }
+
+    .time{
+
+        font-size:55px;
+
+    }
+
+    .enter{
+
+        margin-top:20px;
+
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div id="app">
+
+<div class="bg"></div>
+
+<div class="noise"></div>
+
+<div class="light"></div>
+
+
+<!-- ذرات -->
+
+<div class="particles">
+
+    <span class="particle" style="left:8%;animation-delay:0s"></span>
+    <span class="particle" style="left:17%;animation-delay:2s"></span>
+    <span class="particle" style="left:29%;animation-delay:4s"></span>
+    <span class="particle" style="left:42%;animation-delay:1s"></span>
+    <span class="particle" style="left:57%;animation-delay:3s"></span>
+    <span class="particle" style="left:68%;animation-delay:5s"></span>
+    <span class="particle" style="left:79%;animation-delay:2s"></span>
+    <span class="particle" style="left:91%;animation-delay:4s"></span>
+
+</div>
+
+
+<!-- =========================
+     MUSIC
+========================= -->
+
+<audio
+    id="music"
+    src="Naaji.Vasiat2.bekalam.320.BeysMusic.ir.mp3"
+    loop
+    preload="auto">
+</audio>
+
+
+<!-- =========================
+     INTRO
+========================= -->
+
+<section
+    id="intro"
+    class="screen active">
+
+    <div class="time">
+        02:17
+    </div>
+
+    <div class="introTitle">
+
+        شب‌هایی که فاصله،
+        فاصله نبود...
+
+    </div>
+
+    <button
+        class="enter"
+        onclick="start()">
+
+        ورود
+
+    </button>
+
+</section>
+
+
+<!-- =========================
+     STORY
+========================= -->
+
+<section
+    id="story"
+    class="screen">
+
+    <div class="story">
+
+        <div
+            id="chapter"
+            class="chapter">
+
+            NIGHT 01
+
+        </div>
+
+
+        <div
+            id="storyText"
+            class="storyText">
+
+        </div>
+
+
+        <div
+            id="waitArea"
+            class="waitArea">
+
+            <div class="waitText">
+
+                یه لحظه وایسا...
+
+            </div>
+
+            <button
+                id="secretButton"
+                class="secretButton"
+                onclick="openSecret()">
+
+                اینجا رو باز کن
+
+            </button>
+
+        </div>
+
+
+        <button
+            id="next"
+            class="next"
+            onclick="nextPage()">
+
+            ادامه ↓
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     POPUP
+========================= -->
+
+<div
+    id="popup"
+    class="popup">
+
+    <div
+        id="popupTitle"
+        class="popupTitle">
+
+    </div>
+
+    <div
+        id="popupText"
+        class="popupText">
+
+    </div>
+
+    <button
+        class="close"
+        onclick="closePopup()">
+
+        بستن
+
+    </button>
+
+</div>
+
+
+<!-- =========================
+     FINAL
+========================= -->
+
+<section
+    id="final"
+    class="screen">
+
+    <div class="final">
+
+        <h1>
+            نازنین...
+        </h1>
+
+        <p>
+
+            نمی‌دونم این حرف‌ها رو باید
+            از کجا شروع کنم.
+            <br><br>
+
+            شاید از همون شب‌هایی که
+            با وجود این همه فاصله،
+            احساس می‌کردم خیلی نزدیک‌تری.
+            <br><br>
+
+            شب‌هایی که ساعت‌ها حرف می‌زدیم،
+            می‌خندیدیم،
+            بازی می‌کردیم
+            و اصلاً متوجه نمی‌شدیم
+            زمان چطور گذشت.
+            <br><br>
+
+            شاید برای خیلی‌ها
+            فقط چند ساعت معمولی بود،
+            اما برای من نبود.
+            <br><br>
+
+            چون تو اونجا بودی.
+            <br><br>
+
+            و عجیب‌ترین قسمت ماجرا این بود
+            که با اینکه از هم دور بودیم،
+            بعضی شب‌ها از خیلی آدم‌هایی
+            که کنارم بودن
+            به من نزدیک‌تر بودی.
+            <br><br>
+
+            من اینجا رو نساختم
+            که چیزی ازت بخوام.
+            <br><br>
+
+            فقط خواستم یک بار،
+            بدون عجله،
+            بدون اینکه وسط حرفم
+            چیزی گم بشه،
+            حرف دلم رو بگم.
+            <br><br>
+
+            شاید بعضی چیزها تغییر کرده باشن.
+            <br>
+            شاید خیلی چیزها دیگه مثل قبل نباشن.
+            <br><br>
+
+            ولی من نمی‌تونم وانمود کنم
+            که اون شب‌ها برای من
+            هیچ اهمیتی نداشتن.
+            <br><br>
+
+            <strong>
+                داشتن.
+                خیلی هم داشتن.
+            </strong>
+
+            <br><br>
+
+            و اگر فقط یک چیز
+            از این همه نوشته
+            قرار باشه یادت بمونه،
+            همین باشه:
+            <br><br>
+
+            <strong>
+                تو برای من فقط
+                یک آدم از پشت یک صفحه نبودی.
+            </strong>
+
+            <br><br>
+
+            تو کسی بودی که
+            بعضی از شب‌های دوری رو
+            تبدیل کردی به
+            نزدیک‌ترین شب‌های زندگی من.
+            <br><br>
+
+            و شاید هنوز هم
+            وقتی ساعت 02:17 میشه،
+            یک گوشه از ذهنم
+            یاد اون شب‌ها می‌افته.
+            <br><br>
+
+            <strong>
+                شب‌هایی که فاصله بود،
+                ولی بین ما فاصله نبود.
+            </strong>
+
+        </p>
+
+        <div class="heart">
+            ♥
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     MUSIC STATUS
+========================= -->
+
+<div class="musicStatus">
+
+    <span class="musicDot"></span>
+
+    در حال پخش...
+
+</div>
+
+
+<!-- =========================
+     PROGRESS
+========================= -->
+
+<div class="progress">
+
+    <div
+        id="bar"
+        class="bar">
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   داستان
+===================================================== */
+
+const pages = [
+
+{
+chapter:"NIGHT 01 — شروع",
+
+text:`
+نازنین...
+<br><br>
+
+شاید هیچ‌وقت بهت نگفته باشم،
+ولی یکی از چیزهایی که بیشتر از همه یادم مونده،
+همین شب‌هاست.
+<br><br>
+
+شب‌هایی که کیلومترها از هم فاصله داشتیم،
+اما
+همین فاصله باعث نمی‌شد احساس کنم تنهایی.
+<br><br>
+
+تو بودی.
+<br><br>
+
+همین کافی بود.
+`
+},
+
+{
+chapter:"NIGHT 02 — فاصله",
+
+text:`
+فاصله چیز عجیبیه.
+<br><br>
+
+گاهی دو نفر کنار هم می‌شینن
+ولی هیچ حرفی برای گفتن ندارن.
+<br><br>
+
+و گاهی دو نفر کیلومترها از هم دورن،
+اما ساعت‌ها حرف می‌زنن
+و وقتی خداحافظی می‌کنن،
+هیچ‌کدوم دلش نمی‌خواد اون شب تموم بشه.
+<br><br>
+
+ما از اون شب‌ها داشتیم.
+<br><br>
+
+شب‌هایی که فاصله،
+فقط یک عدد روی نقشه بود.
+`
+},
+
+{
+chapter:"NIGHT 03 — ساعت‌ها",
+
+text:`
+یادمه بعضی شب‌ها
+اصلاً متوجه ساعت نمی‌شدیم.
+<br><br>
+
+می‌گفتیم فقط چند دقیقه حرف بزنیم...
+<br><br>
+
+بعد می‌دیدیم ساعت‌ها گذشته.
+<br><br>
+
+موضوع خاصی هم لازم نبود.
+<br><br>
+
+گاهی حرف‌های جدی،
+گاهی خنده‌های بی‌دلیل،
+گاهی سکوت،
+گاهی حتی یک بازی ساده.
+<br><br>
+
+ولی چیزی که مهم بود این بود که
+<strong>اون لحظه رو با هم داشتیم.</strong>
+`
+},
+
+{
+chapter:"NIGHT 04 — نزدیک",
+
+text:`
+گاهی فکر می‌کنم
+چطور ممکنه کسی این‌قدر دور باشه
+ولی این‌قدر نزدیک؟
+<br><br>
+
+تو پشت یک صفحه بودی،
+اما خیلی وقت‌ها
+حس می‌کردم همینجایی.
+<br><br>
+
+شاید به خاطر حرف‌هامون بود.
+<br>
+شاید به خاطر خنده‌هامون.
+<br>
+شاید فقط به خاطر اینکه
+می‌دونستم اون طرف این فاصله،
+یک نفر هست که منتظر منه.
+`
+},
+
+{
+chapter:"NIGHT 05 — چیزی که نگفتم",
+
+text:`
+این قسمت رو شاید هیچ‌وقت
+درست نتونستم بهت بگم.
+<br><br>
+
+من به بعضی از اون شب‌ها
+بیشتر از چیزی که نشون دادم
+وابسته شده بودم.
+<br><br>
+
+نه به خاطر اینکه اتفاق عجیب
+و بزرگی می‌افتاد.
+<br><br>
+
+اتفاقاً برعکس.
+<br><br>
+
+همین معمولی بودنشون قشنگ بود.
+<br><br>
+
+اینکه آخر یک روز خسته‌کننده،
+می‌دونستم یک نفر هست
+که می‌تونم باهاش حرف بزنم.
+<br><br>
+
+و بعضی شب‌ها،
+فقط منتظر بودم شب بشه.
+`
+
+},
+
+{
+chapter:"NIGHT 06 — اگر می‌دانستی",
+
+text:`
+اگر می‌دونستی
+چند بار بعد از خداحافظی
+هنوز چند دقیقه به صفحه نگاه کردم،
+شاید باور می‌کردی
+که اون شب‌ها برای من ساده نبودن.
+<br><br>
+
+گاهی آدم دلش نمی‌خواد
+مکالمه تموم بشه،
+ولی چیزی برای گفتن نداره.
+<br><br>
+
+پس فقط می‌مونه.
+<br><br>
+
+شاید تو فکر می‌کردی
+من حواسم جای دیگه‌ست.
+<br><br>
+
+ولی خیلی وقت‌ها
+فقط نمی‌خواستم اون لحظه تموم بشه.
+`
+},
+
+{
+chapter:"NIGHT 07 — خاطره",
+
+text:`
+زمان گذشته.
+<br><br>
+
+آدم‌ها تغییر می‌کنن.
+<br>
+شرایط تغییر می‌کنه.
+<br>
+زندگی مسیر خودش رو میره.
+<br><br>
+
+ولی بعضی خاطره‌ها
+هیچ‌وقت دقیقاً قدیمی نمی‌شن.
+<br><br>
+
+فقط تبدیل می‌شن به چیزی
+که وقتی بهش فکر می‌کنی،
+یک لبخند کوچیک میاد روی صورتت.
+<br><br>
+
+برای من،
+بعضی از شب‌های ما همین‌طورن.
+`
+},
+
+{
+chapter:"NIGHT 08 — نازنین",
+
+text:`
+اینجا دیگه نمی‌خوام
+جمله قشنگ بسازم.
+<br><br>
+
+نمی‌خوام چیزی رو شاعرانه کنم.
+<br><br>
+
+فقط می‌خوام خودم باشم.
+<br><br>
+
+نازنین،
+من اون شب‌ها رو یادمه.
+<br><br>
+
+یادمه چقدر با وجود فاصله،
+احساس نزدیکی می‌کردم.
+<br><br>
+
+یادمه چطور بعضی شب‌ها
+دلم نمی‌خواست تموم بشن.
+<br><br>
+
+و یادمه که
+بودنت برام مهم بود.
+`
+},
+
+{
+chapter:"NIGHT 09 — حرف دل",
+
+text:`
+شاید خیلی از چیزهایی که
+باید همون موقع می‌گفتم،
+گفته نشد.
+<br><br>
+
+شاید بعضی وقت‌ها
+غرور،
+ترس،
+شرایط،
+یا حتی سکوت
+جلوی حرف زدنم رو گرفت.
+<br><br>
+
+اما اگر امروز فقط یک فرصت داشته باشم
+که بدون هیچ توضیح اضافه‌ای
+حرف دلم رو بزنم،
+می‌گم:
+<br><br>
+
+<strong>
+من هیچ‌وقت اون شب‌ها رو
+بی‌اهمیت ندیدم.
+</strong>
+<br><br>
+
+و تو هم
+هیچ‌وقت برای من
+«فقط یک نفر» نبودی.
+`
+},
+
+{
+chapter:"NIGHT 10 — آخرین شب",
+
+text:`
+و حالا رسیدیم به آخرین صفحه.
+<br><br>
+
+ولی راستش...
+<br><br>
+
+من اینجا رو برای پایان نساختم.
+<br><br>
+
+ساختمش چون بعضی حرف‌ها
+باید یک جایی گفته می‌شدن.
+<br><br>
+
+شاید دیر.
+<br>
+شاید خیلی دیر.
+<br><br>
+
+ولی واقعی.
+<br><br>
+
+پس اگر یک روز،
+وسط یک شب،
+ساعت رو دیدی که دوباره
+02:17 شده،
+شاید فقط برای چند ثانیه
+یادت بیاد
+که یک زمانی،
+دو نفر با وجود تمام فاصله‌ها،
+شب‌های زیادی رو
+کنار هم زندگی کردن.
+<br><br>
+
+و اون دو نفر،
+<strong>ما بودیم.</strong>
+`
+}
+
+];
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let current=0;
+
+let typing=false;
+
+const intro=
+document.getElementById("intro");
+
+const story=
+document.getElementById("story");
+
+const final=
+document.getElementById("final");
+
+const storyText=
+document.getElementById("storyText");
+
+const chapter=
+document.getElementById("chapter");
+
+const next=
+document.getElementById("next");
+
+const music=
+document.getElementById("music");
+
+const bar=
+document.getElementById("bar");
+
+const waitArea=
+document.getElementById("waitArea");
+
+const secretButton=
+document.getElementById("secretButton");
+
+
+/* =====================================================
+   START
+===================================================== */
+
+function start(){
+
+    music.volume=.42;
+
+    music.play().catch(()=>{});
+
+    intro.classList.remove("active");
+
+    story.classList.add("active");
+
+    showPage();
+}
+
+
+/* =====================================================
+   SHOW PAGE
+===================================================== */
+
+function showPage(){
+
+    typing=true;
+
+    next.classList.remove("show");
+
+    waitArea.style.display="none";
+
+    secretButton.style.display="none";
+
+    chapter.textContent=
+        pages[current].chapter;
+
+    storyText.style.opacity="0";
+
+    storyText.style.transform=
+        "translateY(15px)";
+
+    setTimeout(()=>{
+
+        storyText.innerHTML="";
+
+        storyText.style.opacity="1";
+
+        storyText.style.transform=
+            "translateY(0)";
+
+        typeText();
+
+    },500);
+
+
+    bar.style.width=
+        ((current+1)/pages.length*100)+"%";
+}
+
+
+/* =====================================================
+   TYPEWRITER
+===================================================== */
+
+function typeText(){
+
+    const html=
+        pages[current].text;
+
+    let i=0;
+
+    /*
+       سرعت تایپ:
+       عدد بزرگ‌تر = کندتر
+    */
+
+    const speed=42;
+
+
+    function type(){
+
+        if(i<html.length){
+
+            storyText.innerHTML=
+                html.substring(0,i)+
+                '<span class="cursor"></span>';
+
+            i++;
+
+            setTimeout(type,speed);
+
+        }else{
+
+            storyText.innerHTML=html;
+
+            typing=false;
+
+
+            /*
+               اسلاید 5
+               بعد از تمام شدن متن:
+               اول «یه لحظه وایسا...»
+               سپس دکمه ظاهر می‌شود.
+            */
+
+            if(current===4){
+
+                showSecret();
+
+            }else{
+
+                setTimeout(()=>{
+
+                    next.classList.add("show");
+
+                },900);
+
+            }
+
+        }
+
+    }
+
+    type();
+}
+
+
+/* =====================================================
+   SPECIAL SLIDE 5
+===================================================== */
+
+function showSecret(){
+
+    waitArea.style.display="flex";
+
+    /*
+       دکمه فعلاً مخفی می‌ماند.
+    */
+
+    secretButton.style.display="none";
+
+    /*
+       بعد از 3.5 ثانیه ظاهر می‌شود.
+    */
+
+    setTimeout(()=>{
+
+        secretButton.style.display="block";
+
+    },3500);
+
+}
+
+
+/* =====================================================
+   OPEN SECRET
+===================================================== */
+
+function openSecret(){
+
+    document.getElementById("popupTitle")
+        .textContent=
+        "چیزی که هیچ‌وقت کامل نگفتم";
+
+    document.getElementById("popupText")
+        .textContent=
+        "گاهی فقط منتظر شب می‌موندم که دوباره باهات حرف بزنم. شاید هیچ‌وقت نفهمیدی، ولی بعضی شب‌ها واقعاً یکی از بهترین قسمت‌های روزم بودی.";
+
+    document.getElementById("popup")
+        .classList.add("show");
+
+}
+
+
+/* =====================================================
+   NEXT PAGE
+===================================================== */
+
+function nextPage(){
+
+    if(typing)return;
+
+    current++;
+
+    if(current>=pages.length){
+
+        story.classList.remove("active");
+
+        final.classList.add("active");
+
+        bar.style.width="100%";
+
+        return;
+
+    }
+
+    showPage();
+
+}
+
+
+/* =====================================================
+   CLOSE POPUP
+===================================================== */
+
+function closePopup(){
+
+    document.getElementById("popup")
+        .classList.remove("show");
+
+}
+
+
+/* =====================================================
+   CLICK OUTSIDE POPUP
+===================================================== */
+
+document
+.getElementById("popup")
+.addEventListener(
+    "click",
+    function(e){
+
+        if(e.target===this){
+
+            closePopup();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   KEYBOARD
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    e=>{
+
+        if(e.key==="Enter"){
+
+            if(!typing){
+
+                nextPage();
+
+            }
+
+        }
+
+        if(
+            e.key==="ArrowLeft" ||
+            e.key==="ArrowDown"
+        ){
+
+            if(!typing){
+
+                nextPage();
+
+            }
+
+        }
+
+        if(e.key==="Escape"){
+
+            closePopup();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   PREVENT DOUBLE TAP ZOOM
+===================================================== */
+
+let lastTouch=0;
+
+document.addEventListener(
+    "touchend",
+    e=>{
+
+        const now=Date.now();
+
+        if(now-lastTouch<=300){
+
+            e.preventDefault();
+
+        }
+
+        lastTouch=now;
+
+    },
+    {passive:false}
+);
+
+</script>
+
+</body>
+</html>
+```
