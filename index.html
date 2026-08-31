@@ -2,12 +2,16 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <title>شب‌هایی که فاصله، فاصله نبود</title>
 
 <style>
+
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500&display=swap');
 
 *{
@@ -33,6 +37,10 @@ button{
     font-family:inherit;
 }
 
+/* =========================
+   APP
+========================= */
+
 #app{
     position:relative;
     width:100%;
@@ -42,27 +50,58 @@ button{
     background:#020202;
 }
 
+/* =========================
+   BACKGROUND
+========================= */
+
 .bg{
     position:absolute;
     inset:-15%;
+
     background:
-        radial-gradient(circle at 50% 45%,rgba(120,120,120,.12),transparent 35%),
-        radial-gradient(circle at 15% 80%,rgba(255,255,255,.035),transparent 30%),
-        radial-gradient(circle at 85% 20%,rgba(255,255,255,.025),transparent 30%),
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(120,120,120,.12),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 15% 80%,
+            rgba(255,255,255,.035),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(255,255,255,.025),
+            transparent 30%
+        ),
         #020202;
+
     animation:bgMove 16s ease-in-out infinite alternate;
 }
 
 @keyframes bgMove{
-    from{transform:scale(1);}
-    to{transform:scale(1.12);}
+
+    from{
+        transform:scale(1);
+    }
+
+    to{
+        transform:scale(1.12);
+    }
 }
+
+/* =========================
+   NOISE
+========================= */
 
 .noise{
     position:absolute;
     inset:-50%;
+
     opacity:.035;
+
     pointer-events:none;
+
     background-image:
         repeating-radial-gradient(
             circle,
@@ -71,16 +110,36 @@ button{
             transparent 1px,
             transparent 4px
         );
+
     animation:noise .25s steps(2) infinite;
 }
 
 @keyframes noise{
-    0%{transform:translate(0,0);}
-    25%{transform:translate(2%,1%);}
-    50%{transform:translate(-1%,2%);}
-    75%{transform:translate(1%,-2%);}
-    100%{transform:translate(-2%,0);}
+
+    0%{
+        transform:translate(0,0);
+    }
+
+    25%{
+        transform:translate(2%,1%);
+    }
+
+    50%{
+        transform:translate(-1%,2%);
+    }
+
+    75%{
+        transform:translate(1%,-2%);
+    }
+
+    100%{
+        transform:translate(-2%,0);
+    }
 }
+
+/* =========================
+   PARTICLES
+========================= */
 
 .particles{
     position:absolute;
@@ -91,35 +150,63 @@ button{
 
 .particle{
     position:absolute;
+
     width:2px;
     height:2px;
+
     border-radius:50%;
+
     background:#aaa;
+
     opacity:0;
+
     animation:floatUp 8s linear infinite;
 }
 
 @keyframes floatUp{
+
     0%{
-        transform:translateY(105vh) translateX(0);
+        transform:
+            translateY(105vh)
+            translateX(0);
+
         opacity:0;
     }
-    15%{opacity:.35;}
-    80%{opacity:.12;}
+
+    15%{
+        opacity:.35;
+    }
+
+    80%{
+        opacity:.12;
+    }
+
     100%{
-        transform:translateY(-10vh) translateX(70px);
+        transform:
+            translateY(-10vh)
+            translateX(70px);
+
         opacity:0;
     }
 }
 
+/* =========================
+   LIGHT
+========================= */
+
 .light{
     position:absolute;
+
     width:min(600px,90vw);
     height:min(600px,90vw);
+
     left:50%;
     top:50%;
+
     transform:translate(-50%,-50%);
+
     pointer-events:none;
+
     background:
         radial-gradient(
             circle,
@@ -128,18 +215,27 @@ button{
         );
 }
 
+/* =========================
+   SCREENS
+========================= */
+
 .screen{
     position:absolute;
     inset:0;
+
     display:none;
+
     align-items:center;
     justify-content:center;
+
     padding:
         max(25px,env(safe-area-inset-top))
         max(22px,env(safe-area-inset-right))
         max(55px,env(safe-area-inset-bottom))
         max(22px,env(safe-area-inset-left));
+
     text-align:center;
+
     z-index:5;
 }
 
@@ -147,28 +243,45 @@ button{
     display:flex;
 }
 
+/* =========================
+   INTRO
+========================= */
+
 #intro{
     flex-direction:column;
+
     animation:fadeIn 2s ease;
 }
 
 @keyframes fadeIn{
-    from{opacity:0;}
-    to{opacity:1;}
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
 }
 
 .time{
     font-size:clamp(55px,13vw,110px);
+
     font-weight:200;
+
     letter-spacing:clamp(6px,2vw,12px);
+
     color:#ddd;
+
     text-shadow:
         0 0 30px rgba(255,255,255,.12),
         0 0 90px rgba(255,255,255,.04);
+
     animation:timeGlow 4s ease-in-out infinite;
 }
 
 @keyframes timeGlow{
+
     50%{
         text-shadow:
             0 0 50px rgba(255,255,255,.2),
@@ -177,43 +290,71 @@ button{
 }
 
 .introTitle{
+
     margin-top:15px;
+
     color:#777;
+
     font-size:clamp(12px,3vw,15px);
+
     line-height:2;
 }
 
 .enter{
+
     margin-top:clamp(35px,7vh,55px);
+
     min-width:150px;
+
     padding:13px 35px;
+
     border:1px solid #444;
+
     border-radius:5px;
+
     background:rgba(255,255,255,.015);
+
     color:#999;
+
     font-size:14px;
+
     cursor:pointer;
+
     transition:.4s;
-    box-shadow:0 0 0 rgba(255,255,255,0);
+
+    box-shadow:
+        0 0 0 rgba(255,255,255,0);
 }
 
 .enter:hover,
 .enter:active{
+
     color:#fff;
+
     border-color:#888;
-    box-shadow:0 0 30px rgba(255,255,255,.06);
+
+    box-shadow:
+        0 0 30px rgba(255,255,255,.06);
 }
 
+/* =========================
+   STORY
+========================= */
+
 .story{
+
     width:min(760px,100%);
+
     animation:storyIn .9s ease;
 }
 
 @keyframes storyIn{
+
     from{
         opacity:0;
         transform:translateY(20px);
     }
+
     to{
         opacity:1;
         transform:translateY(0);
@@ -221,91 +362,166 @@ button{
 }
 
 .chapter{
+
     color:#555;
+
     font-size:clamp(9px,2vw,11px);
+
     letter-spacing:clamp(3px,1vw,5px);
+
     margin-bottom:clamp(20px,5vh,35px);
 }
 
 .storyText{
+
     min-height:clamp(300px,48vh,390px);
+
     display:flex;
+
     flex-direction:column;
+
     justify-content:center;
+
     color:#d8d8d8;
-    font-size:clamp(15px,2.1vw,21px);
+
+    font-size:
+        clamp(
+            15px,
+            2.1vw,
+            21px
+        );
+
     line-height:2.65;
+
     font-weight:300;
-    text-shadow:0 0 25px rgba(255,255,255,.025);
+
+    text-shadow:
+        0 0 25px rgba(255,255,255,.025);
+
     overflow-wrap:break-word;
+
     transition:.6s;
 }
 
 .storyText b{
+
     color:#fff;
+
     font-weight:400;
 }
 
+/* =========================
+   CURSOR
+========================= */
+
 .cursor{
+
     display:inline-block;
+
     width:2px;
+
     height:1.1em;
+
     background:#aaa;
+
     margin-right:5px;
+
     vertical-align:middle;
+
     animation:blink .8s infinite;
 }
 
 @keyframes blink{
-    50%{opacity:0;}
+
+    50%{
+        opacity:0;
+    }
 }
 
+/* =========================
+   NEXT
+========================= */
+
 .next{
+
     margin-top:10px;
+
     border:0;
+
     background:transparent;
+
     color:#555;
+
     font-size:13px;
+
     padding:12px 25px;
+
     opacity:0;
+
     transform:translateY(10px);
+
     pointer-events:none;
-    transition:opacity .8s,transform .8s,color .3s;
+
+    transition:
+        opacity .8s,
+        transform .8s,
+        color .3s;
+
     cursor:pointer;
 }
 
 .next.show{
+
     opacity:1;
+
     transform:translateY(0);
+
     pointer-events:auto;
 }
 
 .next:hover,
 .next:active{
+
     color:#fff;
 }
 
+/* =========================
+   SPECIAL WAIT
+========================= */
+
 .waitArea{
+
     display:none;
+
     flex-direction:column;
+
     align-items:center;
+
     justify-content:center;
+
     gap:16px;
+
     margin-top:15px;
 }
 
 .waitText{
+
     color:#555;
+
     font-size:13px;
+
     opacity:0;
+
     animation:waitAppear 1.5s forwards;
 }
 
 @keyframes waitAppear{
+
     from{
         opacity:0;
         transform:translateY(8px);
     }
+
     to{
         opacity:1;
         transform:translateY(0);
@@ -313,292 +529,532 @@ button{
 }
 
 .secretButton{
+
     display:none;
+
     padding:12px 24px;
+
     border:1px solid #444;
+
     background:rgba(255,255,255,.01);
+
     color:#aaa;
+
     border-radius:4px;
+
     font-family:inherit;
+
     font-size:13px;
+
     cursor:pointer;
+
     animation:secretAppear 1.2s ease forwards;
 }
 
 @keyframes secretAppear{
+
     from{
         opacity:0;
-        transform:translateY(15px) scale(.95);
+        transform:
+            translateY(15px)
+            scale(.95);
     }
+
     to{
         opacity:1;
-        transform:translateY(0) scale(1);
+        transform:
+            translateY(0)
+            scale(1);
     }
 }
 
 .secretButton:hover{
+
     color:#fff;
+
     border-color:#888;
-    box-shadow:0 0 30px rgba(255,255,255,.05);
+
+    box-shadow:
+        0 0 30px rgba(255,255,255,.05);
 }
 
+/* =========================
+   POPUP
+========================= */
+
 .popup{
+
     position:absolute;
+
     left:50%;
     top:50%;
-    transform:translate(-50%,-50%) scale(.9);
+
+    transform:
+        translate(-50%,-50%)
+        scale(.9);
+
     width:min(450px,88vw);
+
     max-height:80vh;
+
     overflow:auto;
+
     padding:30px;
-    background:rgba(9,9,9,.98);
+
+    background:
+        rgba(9,9,9,.98);
+
     border:1px solid #333;
-    box-shadow:0 30px 100px rgba(0,0,0,.9);
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.9);
+
     z-index:100;
+
     opacity:0;
+
     pointer-events:none;
+
     transition:.4s;
 }
 
 .popup.show{
+
     opacity:1;
-    transform:translate(-50%,-50%) scale(1);
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+
     pointer-events:auto;
 }
 
 .popupTitle{
+
     color:#666;
+
     font-size:11px;
+
     margin-bottom:20px;
 }
 
 .popupText{
+
     color:#ccc;
+
     font-size:14px;
+
     line-height:2.5;
 }
 
 .close{
+
     margin-top:25px;
+
     padding:10px 30px;
+
     border:1px solid #444;
+
     background:transparent;
+
     color:#999;
+
     border-radius:4px;
+
     cursor:pointer;
 }
 
+/* =========================
+   FINAL
+========================= */
+
 #final{
+
     overflow-y:auto;
+
     align-items:flex-start;
 }
 
 .final{
+
     width:min(720px,100%);
-    padding-top:clamp(30px,8vh,90px);
+
+    padding-top:
+        clamp(30px,8vh,90px);
+
     padding-bottom:100px;
 }
 
 .final h1{
-    font-size:clamp(28px,6vw,48px);
+
+    font-size:
+        clamp(
+            28px,
+            6vw,
+            48px
+        );
+
     font-weight:300;
+
     margin:0 0 40px;
 }
 
 .final p{
+
     color:#aaa;
-    font-size:clamp(14px,2vw,18px);
+
+    font-size:
+        clamp(
+            14px,
+            2vw,
+            18px
+        );
+
     line-height:2.8;
+
     margin:0;
 }
 
 .final strong{
+
     color:#eee;
+
     font-weight:400;
 }
 
 .heart{
+
     margin-top:50px;
+
     font-size:25px;
+
     animation:pulse 2s infinite;
 }
 
 @keyframes pulse{
+
     50%{
         transform:scale(1.2);
         opacity:.5;
     }
 }
 
+/* =========================
+   MUSIC
+========================= */
+
 .musicStatus{
+
     position:absolute;
-    left:max(15px,env(safe-area-inset-left));
-    bottom:max(15px,env(safe-area-inset-bottom));
+
+    left:
+        max(15px,env(safe-area-inset-left));
+
+    bottom:
+        max(15px,env(safe-area-inset-bottom));
+
     z-index:50;
+
     display:flex;
+
     align-items:center;
+
     gap:8px;
+
     color:#444;
+
     font-size:10px;
 }
 
 .musicDot{
+
     width:6px;
     height:6px;
+
     border-radius:50%;
+
     background:#666;
+
     animation:musicPulse 1.5s infinite;
 }
 
 @keyframes musicPulse{
+
     50%{
         opacity:.2;
         transform:scale(.7);
     }
 }
 
+/* =========================
+   PROGRESS
+========================= */
+
 .progress{
+
     position:absolute;
+
     left:50%;
-    bottom:max(17px,env(safe-area-inset-bottom));
+
+    bottom:
+        max(17px,env(safe-area-inset-bottom));
+
     transform:translateX(-50%);
+
     width:min(300px,55vw);
+
     height:1px;
+
     background:#181818;
+
     z-index:40;
 }
 
 .bar{
+
     width:0%;
+
     height:100%;
+
     background:#777;
+
     transition:.7s;
 }
 
-/* امضای سازنده */
+/* =========================
+   MADE BY
+========================= */
 
 .madeBy{
+
     position:fixed;
-    bottom:max(10px,env(safe-area-inset-bottom));
+
     left:50%;
-    transform:translateX(-50%);
-    color:#3d3d3d;
+
+    bottom:
+        max(14px,env(safe-area-inset-bottom));
+
+    transform:
+        translateX(-50%)
+        translateY(15px);
+
+    color:#666;
+
     font-size:10px;
+
     font-weight:300;
+
     letter-spacing:1px;
-    opacity:.65;
-    z-index:200;
+
     white-space:nowrap;
+
+    opacity:0;
+
     pointer-events:none;
+
+    z-index:99999;
+
+    transition:
+        opacity 1.5s ease,
+        transform 1.5s ease;
+}
+
+.madeBy.show{
+
+    opacity:1;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
 }
 
 .madeBy span{
-    color:#666;
-    margin:0 3px;
+
+    color:#888;
+
+    margin:0 4px;
 }
 
 .madeBy b{
-    color:#555;
+
+    color:#aaa;
+
     font-weight:400;
 }
+
+/* =========================
+   PHONE
+========================= */
 
 @media (max-width:600px){
 
     .storyText{
+
         min-height:42vh;
+
         font-size:15px;
+
         line-height:2.45;
+
     }
 
     .chapter{
+
         margin-bottom:20px;
+
     }
 
     .next{
+
         font-size:14px;
+
         padding:13px 28px;
+
     }
 
     .musicStatus{
+
         font-size:9px;
+
     }
 
     .madeBy{
+
         font-size:9px;
-        bottom:max(7px,env(safe-area-inset-bottom));
+
+        bottom:
+            max(10px,env(safe-area-inset-bottom));
     }
 }
+
+/* =========================
+   SMALL PHONE
+========================= */
 
 @media (max-width:380px){
 
     .storyText{
+
         font-size:14px;
+
         line-height:2.3;
+
         min-height:44vh;
+
     }
 
     .chapter{
+
         margin-bottom:15px;
+
     }
 
     .introTitle{
+
         font-size:11px;
+
     }
 }
+
+/* =========================
+   DESKTOP
+========================= */
 
 @media (min-width:800px){
 
     .storyText{
+
         font-size:20px;
+
         line-height:2.7;
+
         min-height:370px;
+
     }
 
     .enter{
-        padding:14px 50px;
+
+        padding:
+            14px 50px;
+
     }
 }
+
+/* =========================
+   SHORT SCREEN
+========================= */
 
 @media (max-height:650px){
 
     .storyText{
+
         min-height:250px;
+
         font-size:15px;
+
         line-height:2.2;
+
     }
 
     .chapter{
+
         margin-bottom:12px;
+
     }
 }
 
-@media (max-height:500px) and (orientation:landscape){
+/* =========================
+   LANDSCAPE PHONE
+========================= */
+
+@media (
+    max-height:500px
+) and (
+    orientation:landscape
+){
 
     .screen{
+
         padding-top:15px;
+
         padding-bottom:45px;
+
     }
 
     .storyText{
+
         min-height:210px;
+
         max-height:55vh;
+
         overflow-y:auto;
+
         font-size:14px;
+
         line-height:2.1;
+
     }
 
     .chapter{
+
         margin-bottom:8px;
+
     }
 
     .time{
+
         font-size:55px;
+
     }
 
     .enter{
+
         margin-top:20px;
+
     }
+
 }
+
 </style>
 </head>
 
@@ -607,10 +1063,17 @@ button{
 <div id="app">
 
 <div class="bg"></div>
+
 <div class="noise"></div>
+
 <div class="light"></div>
 
+<!-- =========================
+     PARTICLES
+========================= -->
+
 <div class="particles">
+
     <span class="particle" style="left:8%;animation-delay:0s"></span>
     <span class="particle" style="left:17%;animation-delay:2s"></span>
     <span class="particle" style="left:29%;animation-delay:4s"></span>
@@ -619,7 +1082,12 @@ button{
     <span class="particle" style="left:68%;animation-delay:5s"></span>
     <span class="particle" style="left:79%;animation-delay:2s"></span>
     <span class="particle" style="left:91%;animation-delay:4s"></span>
+
 </div>
+
+<!-- =========================
+     MUSIC
+========================= -->
 
 <audio
     id="music"
@@ -628,42 +1096,76 @@ button{
     preload="auto">
 </audio>
 
-<section id="intro" class="screen active">
+<!-- =========================
+     INTRO
+========================= -->
 
-    <div class="time">02:17</div>
+<section
+    id="intro"
+    class="screen active">
 
-    <div class="introTitle">
-        شب‌هایی که فاصله،<br>
-        فاصله نبود...
+    <div class="time">
+        02:17
     </div>
 
-    <button class="enter" onclick="start()">
+    <div class="introTitle">
+
+        شب‌هایی که فاصله،
+        <br>
+        فاصله نبود...
+
+    </div>
+
+    <button
+        class="enter"
+        onclick="start()">
+
         ورود
+
     </button>
 
 </section>
 
-<section id="story" class="screen">
+<!-- =========================
+     STORY
+========================= -->
+
+<section
+    id="story"
+    class="screen">
 
     <div class="story">
 
-        <div id="chapter" class="chapter">
+        <div
+            id="chapter"
+            class="chapter">
+
             NIGHT 01
+
         </div>
 
-        <div id="storyText" class="storyText"></div>
+        <div
+            id="storyText"
+            class="storyText">
+        </div>
 
-        <div id="waitArea" class="waitArea">
+        <div
+            id="waitArea"
+            class="waitArea">
 
             <div class="waitText">
+
                 یه لحظه وایسا...
+
             </div>
 
             <button
                 id="secretButton"
                 class="secretButton"
                 onclick="openSecret()">
+
                 اینجا رو باز کن
+
             </button>
 
         </div>
@@ -672,30 +1174,56 @@ button{
             id="next"
             class="next"
             onclick="nextPage()">
+
             ادامه ↓
+
         </button>
 
     </div>
 
 </section>
 
-<div id="popup" class="popup">
+<!-- =========================
+     POPUP
+========================= -->
 
-    <div id="popupTitle" class="popupTitle"></div>
+<div
+    id="popup"
+    class="popup">
 
-    <div id="popupText" class="popupText"></div>
+    <div
+        id="popupTitle"
+        class="popupTitle">
+    </div>
 
-    <button class="close" onclick="closePopup()">
+    <div
+        id="popupText"
+        class="popupText">
+    </div>
+
+    <button
+        class="close"
+        onclick="closePopup()">
+
         بستن
+
     </button>
 
 </div>
 
-<section id="final" class="screen">
+<!-- =========================
+     FINAL
+========================= -->
+
+<section
+    id="final"
+    class="screen">
 
     <div class="final">
 
-        <h1>نازنین...</h1>
+        <h1>
+            نازنین...
+        </h1>
 
         <p>
 
@@ -798,28 +1326,59 @@ button{
 
 </section>
 
+<!-- =========================
+     MUSIC STATUS
+========================= -->
+
 <div class="musicStatus">
+
     <span class="musicDot"></span>
+
     در حال پخش...
+
 </div>
+
+<!-- =========================
+     PROGRESS
+========================= -->
 
 <div class="progress">
-    <div id="bar" class="bar"></div>
-</div>
+
+    <div
+        id="bar"
+        class="bar">
+    </div>
 
 </div>
 
-<!-- امضای سازنده -->
-<div class="madeBy">
-    ساخته شده با <span>&lt;3</span> — <b>TOUMAR_ORG</b>
+</div>
+
+<!-- =========================
+     MADE BY
+========================= -->
+
+<div
+    id="madeBy"
+    class="madeBy">
+
+    ساخته شده با
+    <span>&lt;3</span>
+    —
+    <b>TOUMAR_ORG</b>
+
 </div>
 
 <script>
+
+/* =====================================================
+   STORY
+===================================================== */
 
 const pages = [
 
 {
 chapter:"NIGHT 01 — شروع",
+
 text:`
 نازنین...
 <br><br>
@@ -843,6 +1402,7 @@ text:`
 
 {
 chapter:"NIGHT 02 — فاصله",
+
 text:`
 فاصله چیز عجیبیه.
 <br><br>
@@ -867,6 +1427,7 @@ text:`
 
 {
 chapter:"NIGHT 03 — ساعت‌ها",
+
 text:`
 یادمه بعضی شب‌ها
 اصلاً متوجه ساعت نمی‌شدیم.
@@ -894,6 +1455,7 @@ text:`
 
 {
 chapter:"NIGHT 04 — نزدیک",
+
 text:`
 گاهی فکر می‌کنم
 چطور ممکنه کسی این‌قدر دور باشه
@@ -917,6 +1479,7 @@ text:`
 
 {
 chapter:"NIGHT 05 — چیزی که نگفتم",
+
 text:`
 این قسمت رو شاید هیچ‌وقت
 درست نتونستم بهت بگم.
@@ -949,6 +1512,7 @@ text:`
 
 {
 chapter:"NIGHT 06 — اگر می‌دانستی",
+
 text:`
 اگر می‌دونستی
 چند بار بعد از خداحافظی
@@ -976,6 +1540,7 @@ text:`
 
 {
 chapter:"NIGHT 07 — خاطره",
+
 text:`
 زمان گذشته.
 <br><br>
@@ -1003,6 +1568,7 @@ text:`
 
 {
 chapter:"NIGHT 08 — نازنین",
+
 text:`
 اینجا دیگه نمی‌خوام
 جمله قشنگ بسازم.
@@ -1033,6 +1599,7 @@ text:`
 
 {
 chapter:"NIGHT 09 — حرف دل",
+
 text:`
 شاید خیلی از چیزهایی که
 باید همون موقع می‌گفتم،
@@ -1067,6 +1634,7 @@ text:`
 
 {
 chapter:"NIGHT 10 — آخرین شب",
+
 text:`
 و حالا رسیدیم به آخرین صفحه.
 <br><br>
@@ -1108,154 +1676,253 @@ text:`
 
 ];
 
-let current=0;
-let typing=false;
+/* =====================================================
+   VARIABLES
+===================================================== */
 
-const intro=document.getElementById("intro");
-const story=document.getElementById("story");
-const final=document.getElementById("final");
-const storyText=document.getElementById("storyText");
-const chapter=document.getElementById("chapter");
-const next=document.getElementById("next");
-const music=document.getElementById("music");
-const bar=document.getElementById("bar");
-const waitArea=document.getElementById("waitArea");
-const secretButton=document.getElementById("secretButton");
+let current = 0;
+
+let typing = false;
+
+const intro =
+document.getElementById("intro");
+
+const story =
+document.getElementById("story");
+
+const final =
+document.getElementById("final");
+
+const storyText =
+document.getElementById("storyText");
+
+const chapter =
+document.getElementById("chapter");
+
+const next =
+document.getElementById("next");
+
+const music =
+document.getElementById("music");
+
+const bar =
+document.getElementById("bar");
+
+const waitArea =
+document.getElementById("waitArea");
+
+const secretButton =
+document.getElementById("secretButton");
+
+const madeBy =
+document.getElementById("madeBy");
+
+/* =====================================================
+   START
+===================================================== */
 
 function start(){
 
-    music.volume=0.42;
-    music.currentTime=0;
+    music.volume = 0.42;
 
-    const playPromise=music.play();
+    music.currentTime = 0;
 
-    if(playPromise!==undefined){
+    const playPromise = music.play();
+
+    if(playPromise !== undefined){
 
         playPromise
         .then(()=>{
-            console.log("Music started successfully");
+
+            console.log(
+                "Music started successfully"
+            );
+
         })
         .catch(error=>{
-            console.error("Music failed:",error);
+
+            console.error(
+                "Music failed:",
+                error
+            );
+
         });
 
     }
 
     intro.classList.remove("active");
+
     story.classList.add("active");
 
     showPage();
 }
 
+/* =====================================================
+   SHOW PAGE
+===================================================== */
+
 function showPage(){
 
-    typing=true;
+    typing = true;
 
     next.classList.remove("show");
 
-    waitArea.style.display="none";
-    secretButton.style.display="none";
+    waitArea.style.display = "none";
 
-    chapter.textContent=pages[current].chapter;
+    secretButton.style.display = "none";
 
-    storyText.style.opacity="0";
-    storyText.style.transform="translateY(15px)";
+    chapter.textContent =
+        pages[current].chapter;
+
+    storyText.style.opacity = "0";
+
+    storyText.style.transform =
+        "translateY(15px)";
 
     setTimeout(()=>{
 
-        storyText.innerHTML="";
+        storyText.innerHTML = "";
 
-        storyText.style.opacity="1";
-        storyText.style.transform="translateY(0)";
+        storyText.style.opacity = "1";
+
+        storyText.style.transform =
+            "translateY(0)";
 
         typeText();
 
     },500);
 
-    bar.style.width=((current+1)/pages.length*100)+"%";
+    bar.style.width =
+        ((current + 1) /
+        pages.length * 100) + "%";
 }
+
+/* =====================================================
+   TYPEWRITER
+===================================================== */
 
 function typeText(){
 
-    const html=pages[current].text;
+    const html =
+        pages[current].text;
 
-    let i=0;
+    let i = 0;
 
-    const speed=42;
+    const speed = 42;
 
     function type(){
 
-        if(i<html.length){
+        if(i < html.length){
 
-            storyText.innerHTML=
-                html.substring(0,i)+
+            storyText.innerHTML =
+                html.substring(0,i) +
                 '<span class="cursor"></span>';
 
             i++;
 
-            setTimeout(type,speed);
+            setTimeout(
+                type,
+                speed
+            );
 
         }else{
 
-            storyText.innerHTML=html;
+            storyText.innerHTML =
+                html;
 
-            typing=false;
+            typing = false;
 
-            if(current===4){
+            if(current === 4){
 
                 showSecret();
 
             }else{
 
                 setTimeout(()=>{
+
                     next.classList.add("show");
+
                 },900);
 
             }
+
         }
+
     }
 
     type();
 }
 
+/* =====================================================
+   SPECIAL SLIDE 5
+===================================================== */
+
 function showSecret(){
 
-    waitArea.style.display="flex";
+    waitArea.style.display =
+        "flex";
 
-    secretButton.style.display="none";
+    secretButton.style.display =
+        "none";
 
     setTimeout(()=>{
-        secretButton.style.display="block";
+
+        secretButton.style.display =
+            "block";
+
     },3500);
 }
 
+/* =====================================================
+   OPEN SECRET
+===================================================== */
+
 function openSecret(){
 
-    document.getElementById("popupTitle")
-        .textContent=
+    document
+    .getElementById("popupTitle")
+    .textContent =
         "چیزی که هیچ‌وقت کامل نگفتم";
 
-    document.getElementById("popupText")
-        .textContent=
+    document
+    .getElementById("popupText")
+    .textContent =
         "گاهی فقط منتظر شب می‌موندم که دوباره باهات حرف بزنم. شاید هیچ‌وقت نفهمیدی، ولی بعضی شب‌ها واقعاً یکی از بهترین قسمت‌های روزم بودی.";
 
-    document.getElementById("popup")
-        .classList.add("show");
+    document
+    .getElementById("popup")
+    .classList.add("show");
 }
+
+/* =====================================================
+   NEXT PAGE
+===================================================== */
 
 function nextPage(){
 
-    if(typing)return;
+    if(typing)
+        return;
 
     current++;
 
-    if(current>=pages.length){
+    if(current >= pages.length){
 
         story.classList.remove("active");
 
         final.classList.add("active");
 
-        bar.style.width="100%";
+        bar.style.width = "100%";
+
+        /*
+           امضا فقط بعد از رسیدن
+           به پایان نمایش داده می‌شود.
+        */
+
+        setTimeout(()=>{
+
+            madeBy.classList.add("show");
+
+        },2500);
 
         return;
     }
@@ -1263,11 +1930,20 @@ function nextPage(){
     showPage();
 }
 
+/* =====================================================
+   CLOSE POPUP
+===================================================== */
+
 function closePopup(){
 
-    document.getElementById("popup")
-        .classList.remove("show");
+    document
+    .getElementById("popup")
+    .classList.remove("show");
 }
+
+/* =====================================================
+   CLICK OUTSIDE POPUP
+===================================================== */
 
 document
 .getElementById("popup")
@@ -1275,56 +1951,76 @@ document
     "click",
     function(e){
 
-        if(e.target===this){
+        if(e.target === this){
+
             closePopup();
+
         }
 
     }
 );
+
+/* =====================================================
+   KEYBOARD
+===================================================== */
 
 document.addEventListener(
     "keydown",
     e=>{
 
-        if(e.key==="Enter"){
+        if(e.key === "Enter"){
 
             if(!typing){
+
                 nextPage();
+
             }
 
         }
 
         if(
-            e.key==="ArrowLeft" ||
-            e.key==="ArrowDown"
+            e.key === "ArrowLeft" ||
+            e.key === "ArrowDown"
         ){
 
             if(!typing){
+
                 nextPage();
+
             }
 
         }
 
-        if(e.key==="Escape"){
+        if(e.key === "Escape"){
+
             closePopup();
+
         }
 
     }
 );
 
-let lastTouch=0;
+/* =====================================================
+   PREVENT DOUBLE TAP ZOOM
+===================================================== */
+
+let lastTouch = 0;
 
 document.addEventListener(
     "touchend",
     e=>{
 
-        const now=Date.now();
+        const now = Date.now();
 
-        if(now-lastTouch<=300){
+        if(
+            now - lastTouch <= 300
+        ){
+
             e.preventDefault();
+
         }
 
-        lastTouch=now;
+        lastTouch = now;
 
     },
     {passive:false}
@@ -1334,4 +2030,3 @@ document.addEventListener(
 
 </body>
 </html>
-```
