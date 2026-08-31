@@ -1644,9 +1644,32 @@ document.getElementById("secretButton");
 
 function start(){
 
-    music.volume=.42;
+    music.volume = 0.42;
 
-    music.play().catch(()=>{});
+    music.currentTime = 0;
+
+    const playPromise = music.play();
+
+    if(playPromise !== undefined){
+
+        playPromise
+        .then(() => {
+
+            console.log("Music started successfully");
+
+        })
+        .catch(error => {
+
+            console.error("Music failed:", error);
+
+            alert(
+                "موزیک پخش نشد.\n\n" +
+                "اگر با گوشی هستی، یک بار روی صفحه لمس کن و دوباره «ورود» را بزن."
+            );
+
+        });
+
+    }
 
     intro.classList.remove("active");
 
